@@ -42,5 +42,5 @@ will remove all generated files.
 The project is licensed under the terms of the
 [GPL3](https://www.gnu.org/licenses/gpl-3.0.en.html) license.
 
-<!--  LocalWords:  texlive pdf
+<!--  LocalWords:  texlive pdf tikz lstlisting
  -->
