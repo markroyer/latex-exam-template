@@ -1,0 +1,438 @@
+\documentclass{article}
+% Change "article" to "report" to get rid of page number on title page
+% \usepackage{amsmath,amsfonts,amsthm,amssymb}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{extramarks}
+\usepackage{textcomp}
+\usepackage{amsmath}
+\usepackage{lstcustom}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{url}
+\usepackage{tikz}
+
+\usepackage{totcount} % For the total points
+
+
+% In case you need to adjust margins:
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+% Commands for points
+\newtotcounter{points}
+\newcommand*{\totalpoints}{\thepoints}
+\newcommand*{\pts}[1]{\addtocounter{points}{#1}(#1pt)}
+
+\newtotcounter{ecpoints}
+\newcommand*{\totalecpoints}{\theecpoints}
+\newcommand{\ecpts}[1]{\addtocounter{ecpoints}{#1}(#1pt)}
+
+% Exercise Specific Information
+\newcommand{\hmwkTitle}{\underline{Exam}}
+\newcommand{\hmwkDueDate}{2016-07-09 8:00 a.m.}
+\newcommand{\hmwkClass}{COS 101} \newcommand{\hmwkPoints}{
+  \ref{lastQuestion} questions; \protect\total{points} pts +
+  \protect{\total{ecpoints}} ec; \pageref{LastPage} pgs.}
+
+\newcommand{\cstart}{\vspace{.4cm}}
+
+% Setup the header and footer
+\pagestyle{fancy}
+\lhead{\hmwkClass\ \hmwkTitle} 
+\chead{\hmwkPoints}
+\rhead{\hmwkDueDate}
+\lfoot{\lastxmark}  
+\cfoot{}            
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}}
+\renewcommand\headrulewidth{0.4pt} 
+\renewcommand\footrulewidth{0.4pt}
+
+% Setup listing look
+
+\lstset{
+  language=C++,
+  style=eclipse,
+  showspaces=false, 
+  numbers=left,
+  frame=tb,
+}
+
+\begin{document}
+
+\begin{spacing}{1.4}
+
+\begin{enumerate}[leftmargin=*]
+\item \pts{1} \textbf{Name:} \hrulefill
+
+Carefully read each question, and write the answer in the space
+provided.  If answers are written obscurely, zero credit will be
+awarded. Use the notations of class and the book. You may use your
+book and notes during the test, but electronic devices are
+\textbf{not} allowed. Questions may be brought to the
+instructor. Print your name in the space provided above.
+
+For all questions, if the answer to a question should be a memory
+location, use the \textbf{address operator} followed by the
+variable. If the address location is unknown, write the
+\textbf{address operator} followed by the word \textbf{UNKNOWN}.
+  
+
+\item What is the value of each expression using the provided
+  variables. Place a decimal point in your answer to indicate a double
+  value (eg. 2.0).
+
+\begin{lstlisting}
+double x = 100.0;
+double y = 15;
+int m = 25;
+int n = 10;
+\end{lstlisting}
+
+\begin{enumerate}
+
+\item \pts{1} \underline{\hspace{1in}} \lstinline$x / n + m$
+
+\item \pts{1} \underline{\hspace{1in}} \lstinline$n / x + m$
+
+\item \pts{1} \underline{\hspace{1in}} \lstinline$int(x) / n + m$
+
+\item \pts{1} \underline{\hspace{1in}} \lstinline$n / (int)x + m$
+
+\item \pts{1} \underline{\hspace{1in}} \lstinline$int(y) % m$
+
+\end{enumerate}
+
+\item \pts{5} Write a \textbf{templated} function that converts an
+  array into a string.  For example, if the array contained the
+  numbers $0,3,4,6$, the expected output would be \lstinline$"[ 0, 3, 4, 6 ]"$. 
+  You may assume that the type in the array has a
+  stringstream insertion-operator function defined. (Hint: hw03)
+
+\newpage
+
+\hspace{-.5cm}\textbf{Questions \ref{sl1}-\ref{el1}} refer to the code shown below. 
+
+\begin{lstlisting}[showspaces=false,showlines=true,escapeinside={*@}{@*}]
+int i, *i1;
+double* d = new double[5];
+double* d2 = new double[10];
+i = 0;
+i1 = &i;
+while (i < 5) {
+  d[i] = i;
+  *(d2 + (i * 2)) = i;
+  i = i + 2;
+}
+*@\label{firstl1}@*
+delete [] d;
+
+\end{lstlisting}
+
+
+\item\label{sl1} \pts{1} How many variables \textbf{are} declared as
+pointers? \underline{\hspace{1in}}
+
+\item \pts{1} How many variables are \textbf{not} declared as
+pointers? \underline{\hspace{1in}}
+
+\item \pts{2} How many variables have values that are memory locations
+on the heap at \textbf{line \ref{firstl1}}? \underline{\hspace{1in}}
+
+\item \pts{1} Is dynamic memory freed? If so, indicate which lines it
+occurs. \underline{\hspace{1in}}
+
+\item \pts{2} Does the example contain a memory leak? (yes/no)
+\underline{\hspace{1in}}
+
+\item \pts{2} If the example contains a memory leak, show in the space
+  provided below how it can be corrected without changing the
+  resulting variable values. If it does not contain a memory leak,
+  explain why there is none.
+
+\vspace{2cm}
+
+\item \pts{2} What is the value of \lstinline$*d$ at \textbf{line
+  \ref{firstl1}}? \underline{\hspace{1in}}
+
+\item \pts{2} What is the value of \lstinline$*i1$ at \textbf{line
+  \ref{firstl1}}? \underline{\hspace{1in}}
+
+\item \pts{2} What is the value of \lstinline$i1$ at \textbf{line
+  \ref{firstl1}}? \underline{\hspace{1in}}
+
+\item \pts{2} What is the value of \lstinline$d[2]$ at \textbf{line
+  \ref{firstl1}}? \underline{\hspace{1in}}
+
+\item\label{el1} \pts{2} What is the value of \lstinline$d2[2]$ at \textbf{line
+  \ref{firstl1}}? \underline{\hspace{1in}}
+
+\newpage
+
+\hspace{-.5cm}\textbf{Questions \ref{rl1}-\ref{rel1}} refer to the code shown below. 
+
+\begin{lstlisting}[showspaces=false,showlines=true]
+int f(int n) {
+  if (n == 0)
+    return 1;
+  else
+    return n * f(n-1);
+}
+\end{lstlisting}
+
+\item\label{rl1} \pts{2} Show the result of evaluating the function
+  \textbf{f} for the values: 0, 2, 3, and 5.
+
+\vspace{4cm}
+
+\item \pts{1} The line number of the return statement for the base
+  case in the function \textbf{f} is \underline{\hspace{1in}}.
+
+\item\label{rel1} \pts{1} The line number for the recursive case in
+  the function is \underline{\hspace{1in}}.
+
+
+\hspace{-.5cm}Use the following listing to answer the question below.
+
+\begin{multicols}{2}
+\begin{lstlisting}[numbers=none,frame=none]
+class Node {
+public:
+  int x;
+  Node* next;
+};
+class Stack {
+  Node* top;
+public:
+  void push(int val);
+};
+\end{lstlisting}
+\end{multicols}
+
+
+\item \pts{4} Convert the \lstinline$Node$ and \lstinline$Stack$ class
+  specifications, as shown above, into templated classes.
+
+
+\vspace{7cm}
+
+\newpage
+
+\item\label{ab} \pts{10} Assuming that the classes A and B have been defined as
+  shown below, what does the following program display as output?
+  (Write output on lines below.) 
+
+\begin{multicols}{2}
+\begin{lstlisting}[numbers=none,frame=none]
+class A {
+  public:
+  virtual string m() const {
+    return "A";
+  }
+};
+
+class B: public A {
+  public:
+  virtual string m() const {
+    return "B";
+  }
+};
+\end{lstlisting}
+\end{multicols}
+\begin{lstlisting}[escapeinside={*@}{@*}]
+void f1(A a) { cout << a.m() << endl; }
+
+void f2(A& a) { cout << a.m() << endl; } 
+
+int main() {
+  A* a = new A();
+  B* b = new B();
+
+  cout << a->m() << endl;*@\label{l1}@*
+  cout << b->m() << endl;*@\label{l3}@*
+  a = b;
+  cout << a->m() << endl;*@\label{l5}@*
+  
+  f1(*a);*@\label{l7}@*
+  f2(*a);*@\label{l8}@*
+
+  return 0; 
+}
+\end{lstlisting}
+
+\newcommand{\lin}[1]{
+\par\smallskip\noindent\parbox[t]{.09\textwidth}{\raggedright\textbf{Line #1:}}
+ \parbox[t]{.3\textwidth}{\raggedleft\hrulefill}\par\smallskip\vspace{1em}
+}%
+
+\begin{multicols}{2}
+
+\lin{\ref{l1}}
+
+\lin{\ref{l3}}
+
+\lin{\ref{l5}}
+
+\lin{\ref{l7}}
+
+\lin{\ref{l8}}
+
+\end{multicols}
+
+\newpage
+
+\begin{lstlisting}
+A* a = new B();
+B* b = dynamic_cast<B*>(a);
+
+if (b == NULL)
+  cout << "I'm NOT a B object?" << endl;
+else
+  cout << "I'm a B object!" << endl;
+\end{lstlisting}
+
+\item \pts{2} Assuming the definitions from question \ref{ab}, write
+  the output from the code shown above.
+
+\vspace{2cm}
+
+\item \pts{4} Depict the binary search tree (BST) generated by
+inserting the following keys: 3, 1, 6, 4, 10, 2, 5, 9, 8, 7. You need
+only show the final tree.
+
+\vspace{6cm}
+
+\item\label{fbst} \pts{3} Depict the BST after removing 8, 6, and
+1. Depict the BST after each removal is completed. Use the removal
+method used in class and in the book.
+
+\vspace{12cm}
+
+\item \pts{2} List the \textbf{preorder} traversal of the final tree
+in question \ref{fbst}.
+
+\vspace{2cm}
+
+\item \pts{2} List the \textbf{postorder} traversal of the final tree
+in question \ref{fbst}.
+
+\vspace{2cm}
+
+\item \pts{2} List the \textbf{inorder} traversal of the final tree in
+question \ref{fbst}.
+
+\vspace{2cm}
+
+\item \pts{2} List the \textbf{breadth-first} traversal of the tree in
+question \ref{fbst}.
+
+\vspace{2cm}
+
+\item\label{tree} \pts{3} For each node in the following tree,
+  write the height of the subtree rooted at its node to the left and
+  write the AVL balance factor to the right.
+
+\begin{center}
+
+\tikzset{
+  tnode/.style = {text centered, font=\sffamily, circle, black, draw=black, inner sep=2pt, minimum width=2em}
+}
+
+
+\resizebox{12.0cm}{!}{%
+\begin{tikzpicture}[level/.style={sibling distance = 16cm/(2^#1),
+  level distance = 2cm}] 
+
+\node [tnode] { 18 }
+  child { node [tnode] { 10 } 
+    child { node [tnode] { 5 } 
+      child { node [tnode] { 2 } }
+      child[missing]{}
+    }
+    child { node [tnode] { 15 } 
+      child { node [tnode] { 13 } }
+      child[missing]{}
+    }
+  } 
+  child { node [tnode] { 23 }
+    child { node [tnode] { 20 } }
+    child[missing]{} 
+  }
+;
+\end{tikzpicture}
+}%
+\end{center}
+
+\newpage
+
+\item \pts{2} Is the tree of question \ref{tree} a \textbf{binary heap}?
+
+\vspace{1cm}
+
+\item \pts{2} Is the tree of question \ref{tree} a \textbf{binary search tree}?
+
+\vspace{1cm}
+
+\item \pts{2} Is the tree of question \ref{tree} an \textbf{AVL tree}?
+
+\vspace{1cm}
+
+
+\item \pts{8} Depict the \textbf{AVL tree} generated by inserting the
+  following keys: 3, 1, 6, 4, 10, 2, 5, 9, 8, 7. Clearly label and
+  depict each rotation with the proper rotation from the AVL cheat
+  sheet (LL,RR,etc.).  You will lose significant points if rotations
+  are not clearly marked.
+
+\newpage
+
+\item \pts{5} Show the action of removing 10, 7, and 9
+  from the final AVL tree of the previous question.  Depict the AVL
+  tree after each removal is completed and label any rotations. Use
+  the removal method used in class and in the book.
+
+\vspace{6cm}
+
+
+\item\label{splaytree} \pts{8} Depict the \textbf{splay tree} generated by
+  inserting the following keys into an initially empty tree: 10, 25,
+  1, 14, 17, 86, 15, 2, 6, 13. Clearly label any splay operations that
+  occur.
+
+\newpage
+
+\begin{center}
+\textit{Additional space for the previous question}
+\end{center}
+
+\vspace{8cm}
+
+\item\label{lastQuestion} \pts{5} Show the action of performing
+  searches on the final splay tree of the previous question for keys
+  17, 14, and 2.
+
+\newpage
+
+\textbf{Extra Credit}: \ecpts{5} Depict all non-isomorphic \textbf{binary
+search trees} containing keys from the set ${1,2,3,4}$.  If the number
+of trees is too large to depict, explain how to calculate the number
+of trees.
+
+\vspace{12cm}
+
+\textbf{Extra Credit}: \ecpts{5} Depict all non-isomorphic \textbf{AVL trees}
+containing keys from the set ${1,2,3,4}$.  If the number of trees is
+too large to depict, explain how to calculate the number of trees.
+
+
+\end{enumerate}
+\end{spacing}
+
+\end{document}
+
+
