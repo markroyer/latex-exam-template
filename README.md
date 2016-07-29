@@ -37,10 +37,17 @@ make clean
 
 will remove all generated files.
 
+## Thanks
+
+This exam template was influenced by exam formats given by Sudarshan
+Chawathe.  You can view some of his work at his web site:
+[cs.umaine.edu/~chaw](http://cs.umaine.edu/~chaw).
+
 ## License
 
 The project is licensed under the terms of the
 [GPL3](https://www.gnu.org/licenses/gpl-3.0.en.html) license.
 
-<!--  LocalWords:  texlive pdf tikz lstlisting
+<!--  LocalWords:  texlive pdf tikz lstlisting eg markup labelling
  -->
+LocalWords:  Sudarshan Chawathe GPL
